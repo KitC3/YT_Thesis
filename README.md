@@ -94,21 +94,3 @@ Performs comprehensive visual and textual analysis on YouTube video thumbnails. 
 4. **Output:**  
    - CSV files for color/brightness, composition, visual complexity, object/concreteness, face/emotion, text, and element complexity are saved in the output directory.
 
----
-
-## Summary Table
-
-| Script Name                         | Purpose                                      | Key Features                  | Outputs                |
-|--------------------------------------|----------------------------------------------|-------------------------------|------------------------|
-| Retrieve-Channel-Videos-2025.py      | YouTube video metadata collection            | Channel/video selection, metadata, thumbnails | CSV files, thumbnails  |
-| FINAL-THUMBNAIL-ANALYSIS-18062025.py | Thumbnail visual/textual analysis            | Color, brightness, objects, faces, text, sentiment | Multiple CSV files     |
-
----
-
-## Notes
-
-- **Data Privacy:** Ensure compliance with YouTube's terms of service and data privacy regulations.
-- **API Key Security:** Do not share your YouTube Data API key publicly.
-- **Model Files:** Download required model files and place them in the appropriate directories before running the thumbnail analysis script.
-
-For more details, refer to the inline comments in each script.
