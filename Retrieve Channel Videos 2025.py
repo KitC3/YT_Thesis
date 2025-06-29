@@ -5,14 +5,10 @@ import pandas as pd
 from googleapiclient.discovery import build
 from time import sleep
 
-#AIzaSyAAtFXYGj5DQ8A0mv_5OVnqtDSrM9ow31Y
-#AIzaSyAC2aeaA8sMq2RCisHFpSd0vvU3kLCJ-MM
-#AIzaSyBgSKe85dsddffGSEWAfN8pmySlRTUBN5w
-#AIzaSyDHUvHlAUg4KgxSEQxCWmykGx7l5WbxRyg
-#AIzaSyCmT0GwAIlQxEMqisj-Jsm208Q6XRX_k9w
+
 
 # ========== USER CONFIGURATION ==========
-API_KEY = "AIzaSyAAtFXYGj5DQ8A0mv_5OVnqtDSrM9ow31Y"
+API_KEY = ""
 CSV_PATH = r"C:\Users\ChanK\OneDrive - Tilburg University\Thesis 2024\Youtube Data\Final 2025 June\output\filtered_yt_channels_productivity_cleaned.csv"
 OUTPUT_DIR = r"C:\Users\ChanK\OneDrive - Tilburg University\Thesis 2024\Youtube Data\Final 2025 June"
 THUMBNAIL_DIR = os.path.join(OUTPUT_DIR, "thumbnails_2016_2021")
