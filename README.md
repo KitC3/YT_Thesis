@@ -1,6 +1,6 @@
-# YouTube Video Metadata, Thumbnail Analysis, and Panel Modeling Pipeline
+# The Adaptive Power of Video Thumbnails in the Age of Algorithmic Curation
 
-This repository provides a **full workflow** for collecting YouTube video metadata, analyzing video thumbnails, and performing advanced statistical modeling on the results. The pipeline is designed for research and data analysis projects involving YouTube content, visual analytics, and causal inference.
+This repository is part of the master thesis titled "The Adaptive Power of Video Thumbnails in the Age of Algorithmic Curation". This repository provides a **full workflow** for collecting YouTube video metadata, analyzing video thumbnails, and performing advanced statistical modeling on the results. The pipeline is designed for research and data analysis projects involving YouTube content, visual analytics, and causal inference.
 
 ---
 
