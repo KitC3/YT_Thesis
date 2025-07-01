@@ -17,11 +17,11 @@ library(patchwork) # For plot composition
 
 # 2. Set Output Directory
 # -----------------------
-output_dir <- "C:/Users/ChanK/OneDrive - Tilburg University/Thesis 2024/Thesis - R Scripts/Output - PPML + NBR (No Fixed Effects)"
+output_dir <- "<YOUR_OUTPUT_DIRECTORY_HERE>"  # e.g., "C:/path/to/output/directory"
 
 # 3. Load Data and Preparation
 # ----------------------------
-file_path <- "C:/Users/ChanK/OneDrive - Tilburg University/Thesis 2024/Youtube Data/Final 2025 June/20250624merged_final_df_v2.csv"
+file_path <- "<YOUR_CSV_FILE_PATH_HERE>"      # e.g., "C:/path/to/your/file.csv"
 df <- read.csv(file_path)
 
 df <- df %>%
