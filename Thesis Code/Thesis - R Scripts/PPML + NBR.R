@@ -19,8 +19,13 @@ library(patchwork) # For combining plots
 
 # 2. Load Data and Preparation
 # ----------------------------
-file_path <- "<YOUR_CSV_FILE_PATH_HERE>"      # e.g., "C:/path/to/your/file.csv"
+# Set output directory
 output_dir <- "<YOUR_OUTPUT_DIRECTORY_HERE>"  # e.g., "C:/path/to/output/directory"
+if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
+
+# 1. Load and Prepare Data
+# -------------------------
+file_path <- "<YOUR_CSV_FILE_PATH_HERE>"      # e.g., "C:/path/to/your/file.csv"
 
 df <- read.csv(file_path)
 
