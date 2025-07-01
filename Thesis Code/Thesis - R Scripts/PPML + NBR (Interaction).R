@@ -13,13 +13,13 @@ library(ggeffects)
 library(ggplot2)
 library(optmatch)
 
-# 2. Set Output Directory
-output_dir <- "C:/Users/ChanK/OneDrive - Tilburg University/Thesis 2024/Thesis - R Scripts/Output - PPML + NBR (Interaction)"
+# Set output directory
+output_dir <- "<YOUR_OUTPUT_DIRECTORY_HERE>"  # e.g., "C:/path/to/output/directory"
 if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
 
-# 3. Load Data and Preparation
-file_path <- "C:/Users/ChanK/OneDrive - Tilburg University/Thesis 2024/Youtube Data/Final 2025 June/20250624merged_final_df_v2.csv"
-df <- read.csv(file_path)
+# 1. Load and Prepare Data
+# -------------------------
+file_path <- "<YOUR_CSV_FILE_PATH_HERE>"      # e.g., "C:/path/to/your/file.csv"
 
 df <- df %>%
   mutate(
