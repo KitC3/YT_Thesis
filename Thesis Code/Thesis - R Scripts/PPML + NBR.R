@@ -19,8 +19,8 @@ library(patchwork) # For combining plots
 
 # 2. Load Data and Preparation
 # ----------------------------
-file_path <- "C:/Users/ChanK/OneDrive - Tilburg University/Thesis 2024/Youtube Data/Final 2025 June/20250624merged_final_df_v2.csv"
-output_dir <- "C:/Users/ChanK/OneDrive - Tilburg University/Thesis 2024/Thesis - R Scripts/Output - PPML + NBR"
+file_path <- "<YOUR_CSV_FILE_PATH_HERE>"      # e.g., "C:/path/to/your/file.csv"
+output_dir <- "<YOUR_OUTPUT_DIRECTORY_HERE>"  # e.g., "C:/path/to/output/directory"
 
 df <- read.csv(file_path)
 
