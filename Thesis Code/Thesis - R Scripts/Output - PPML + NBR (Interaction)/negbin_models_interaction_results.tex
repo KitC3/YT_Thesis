@@ -1,0 +1,109 @@
+
+\begin{table}[htbp]
+   \caption{Negative Binomial Regression with Face × Text Interaction}
+   \centering
+   \begin{tabular}{lcc}
+      \tabularnewline \midrule \midrule
+      Dependent Variables: & view\_count             & like\_count\\   
+      Model:               & (1)                     & (2)\\  
+      \midrule
+      \emph{Variables}\\
+      Face Presence        & -0.0438                 & 0.0240\\   
+                           & (0.1803)                & (0.1964)\\   
+      Text Presence        & 0.1359                  & 0.1439\\   
+                           & (0.1334)                & (0.1258)\\   
+      Title Sentiment      & 0.0694                  & 0.0604\\   
+                           & (0.0864)                & (0.0818)\\   
+      Text Sentiment       & -0.1340                 & -0.1141\\   
+                           & (0.0944)                & (0.0890)\\   
+      Duration             & $1.82\times 10^{-5}$    & $-2.21\times 10^{-5}$\\    
+                           & ($8.43\times 10^{-5}$)  & ($6.32\times 10^{-5}$)\\    
+      Title Length         & 0.0041$^{*}$            & 0.0024\\   
+                           & (0.0023)                & (0.0022)\\   
+      No. of Tags          & 0.0185$^{***}$          & 0.0177$^{***}$\\   
+                           & (0.0049)                & (0.0050)\\   
+      Colorfulness         & -0.0014                 & -0.0032$^{***}$\\   
+                           & (0.0011)                & (0.0012)\\   
+      Brightness           & 0.0041$^{***}$          & 0.0031$^{**}$\\   
+                           & (0.0013)                & (0.0012)\\   
+      Edge                 & $-4.49\times 10^{-6}$   & $-1.21\times 10^{-7}$\\    
+                           & ($9.2\times 10^{-6}$)   & ($9.11\times 10^{-6}$)\\    
+      Entropy              & 0.1091                  & 0.0963\\   
+                           & (0.0712)                & (0.0705)\\   
+      No. of Objects       & -0.0022                 & -0.0095\\   
+                           & (0.0144)                & (0.0102)\\   
+      Face × Text          & 0.0438                  & -0.0237\\   
+                           & (0.1838)                & (0.1986)\\   
+      \midrule
+      \emph{Fixed-effects}\\
+      channel\_name        & Yes                     & Yes\\  
+      time\_month          & Yes                     & Yes\\  
+      \midrule
+      \emph{Fit statistics}\\
+      Observations         & 13,216                  & 13,209\\  
+      Squared Correlation  & 0.22036                 & 0.26665\\  
+      Pseudo R$^2$         & 0.08168                 & 0.12246\\  
+      BIC                  & 257,303.6               & 169,347.7\\  
+      Over-dispersion      & 0.63977                 & 0.69300\\  
+      \midrule \midrule
+      \multicolumn{3}{l}{\emph{Clustered (channel\_name) standard-errors in parentheses}}\\
+      \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+   \end{tabular}
+\end{table}
+
+
+
+\begin{table}[htbp]
+   \caption{Negative Binomial Regression with Face × Text Interaction}
+   \centering
+   \begin{tabular}{lcc}
+      \tabularnewline \midrule \midrule
+      Dependent Variables: & view\_count             & like\_count\\   
+      Model:               & (1)                     & (2)\\  
+      \midrule
+      \emph{Variables}\\
+      Face Presence        & -0.0438                 & 0.0240\\   
+                           & (0.1803)                & (0.1964)\\   
+      Text Presence        & 0.1359                  & 0.1439\\   
+                           & (0.1334)                & (0.1258)\\   
+      Title Sentiment      & 0.0694                  & 0.0604\\   
+                           & (0.0864)                & (0.0818)\\   
+      Text Sentiment       & -0.1340                 & -0.1141\\   
+                           & (0.0944)                & (0.0890)\\   
+      Duration             & $1.82\times 10^{-5}$    & $-2.21\times 10^{-5}$\\    
+                           & ($8.43\times 10^{-5}$)  & ($6.32\times 10^{-5}$)\\    
+      Title Length         & 0.0041$^{*}$            & 0.0024\\   
+                           & (0.0023)                & (0.0022)\\   
+      No. of Tags          & 0.0185$^{***}$          & 0.0177$^{***}$\\   
+                           & (0.0049)                & (0.0050)\\   
+      Colorfulness         & -0.0014                 & -0.0032$^{***}$\\   
+                           & (0.0011)                & (0.0012)\\   
+      Brightness           & 0.0041$^{***}$          & 0.0031$^{**}$\\   
+                           & (0.0013)                & (0.0012)\\   
+      Edge                 & $-4.49\times 10^{-6}$   & $-1.21\times 10^{-7}$\\    
+                           & ($9.2\times 10^{-6}$)   & ($9.11\times 10^{-6}$)\\    
+      Entropy              & 0.1091                  & 0.0963\\   
+                           & (0.0712)                & (0.0705)\\   
+      No. of Objects       & -0.0022                 & -0.0095\\   
+                           & (0.0144)                & (0.0102)\\   
+      Face × Text          & 0.0438                  & -0.0237\\   
+                           & (0.1838)                & (0.1986)\\   
+      \midrule
+      \emph{Fixed-effects}\\
+      channel\_name        & Yes                     & Yes\\  
+      time\_month          & Yes                     & Yes\\  
+      \midrule
+      \emph{Fit statistics}\\
+      Squared Correlation  & 0.22036                 & 0.26665\\  
+      Pseudo R$^2$         & 0.08168                 & 0.12246\\  
+      BIC                  & 257,303.6               & 169,347.7\\  
+      Observations         & 13,216                  & 13,209\\  
+      Log-Likelihood       & -127,209.5              & -83,241.1\\  
+      AIC                  & 255,026.9               & 167,086.1\\  
+      \midrule \midrule
+      \multicolumn{3}{l}{\emph{Clustered (channel\_name) standard-errors in parentheses}}\\
+      \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+   \end{tabular}
+\end{table}
+
+
