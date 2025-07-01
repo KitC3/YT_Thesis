@@ -9,6 +9,7 @@ This repository accompanies the master thesis **"The Adaptive Power of Video Thu
 ## Table of Contents
 
 - [Installation](#installation)
+- [Data](#data)
 - [Usage](#usage)
   - [Python Workflow](#python-workflow)
   - [R Workflow](#r-workflow)
@@ -47,6 +48,14 @@ cd YT_Thesis
 - Insert your API key in the relevant Python scripts (see comments for `YOUTUBE_API_KEY` or `API_KEY` variables).
 
 ---
+
+## Data
+
+**Final Dataset Provided**
+
+- The repository includes the **final processed dataset** required for running all optional Python scripts and all R scripts.
+- You do **not** need to re-run the full data collection and processing pipeline unless you wish to reproduce the data generation.
+- The dataset is located in the `Thesis Data/` folder.
 
 ## Usage
 
