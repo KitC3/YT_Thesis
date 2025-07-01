@@ -118,7 +118,6 @@ This project uses the YouTube Data API.
 - You retain no rights to YouTube content or data beyond what is expressly granted for API use.
 - For academic or non-commercial use, API access is free up to quota limits; commercial use may require additional permissions.
 
-*No open-source license is specified for this repository. If you wish to share or reuse this code, please contact the author.*
 
 ---
 
