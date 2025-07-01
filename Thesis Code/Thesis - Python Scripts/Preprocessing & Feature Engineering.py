@@ -8,25 +8,59 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 # ======================
 # CONFIGURATION
 # ======================
-# Define your base path here
 BASE_PATH = r'C:\Your\Project\Path'
-INPUT_FOLDER = os.path.join(BASE_PATH, 'output')
-OUTPUT_FOLDER = os.path.join(BASE_PATH, 'output')
+INPUT_FOLDER = os.path.join(BASE_PATH)
+OUTPUT_FOLDER = os.path.join(BASE_PATH)
 
+# ======================
+# CONCATENATE METADATA CSVs
+# ======================
+def concatenate_metadata():
+    metadata_dir = os.path.join(BASE_PATH, 'METADATA')
+    output_path = os.path.join(BASE_PATH, 'metadata_rows.csv')
+
+    if not os.path.exists(metadata_dir):
+        raise FileNotFoundError(f"Directory not found: {metadata_dir}")
+
+    csv_files = [f for f in os.listdir(metadata_dir) if f.endswith('.csv')]
+    if not csv_files:
+        print("Warning: No CSV files found in METADATA directory")
+        return
+
+    df_list = []
+    for f in csv_files:
+        file_path = os.path.join(metadata_dir, f)
+        try:
+            df = pd.read_csv(file_path)
+            df_list.append(df)
+        except Exception as e:
+            print(f"Could not read {file_path}: {e}")
+
+    if df_list:
+        concatenated_df = pd.concat(df_list, ignore_index=True)
+        concatenated_df.to_csv(output_path, index=False)
+        print(f"Saved concatenated metadata to: {output_path} ({len(concatenated_df)} rows)")
+    else:
+        print("No valid CSVs to concatenate.")
+
+# Run the concatenation step before anything else
+concatenate_metadata()
+
+# ======================
+# INPUT FILES
+# ======================
 input_files = {
-    "channels": os.path.join(INPUT_FOLDER, 'filtered_yt_channels_productivity.csv'),
     "visual_complexity": os.path.join(INPUT_FOLDER, 'visual_complexity.csv'),
     "object_concreteness": os.path.join(INPUT_FOLDER, 'object_concreteness.csv'),
     "face_emotion": os.path.join(INPUT_FOLDER, 'face_emotion.csv'),
     "color_brightness": os.path.join(INPUT_FOLDER, 'color_brightness.csv'),
     "text": os.path.join(INPUT_FOLDER, 'text.csv'),
-    "merged": os.path.join(BASE_PATH, 'merged_no_duplicates.csv')
+    "merged": os.path.join(BASE_PATH, 'metadata_rows.csv')  # Use the new concatenated file
 }
 
 # Output configuration
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
-INTERMEDIATE_OUTPUT = os.path.join(OUTPUT_FOLDER, 'filtered_yt_channels_productivity_cleaned.csv')
-FILTERED_OUTPUT = os.path.join(OUTPUT_FOLDER, 'filtered_yt_channels_productivity_cleaned_filtered.csv')
+INTERMEDIATE_OUTPUT = os.path.join(OUTPUT_FOLDER, 'YouTube_Productivity.csv')
 
 # ======================
 # HELPER FUNCTIONS
@@ -55,10 +89,7 @@ def iso8601_duration_to_seconds(duration):
 # ======================
 # DATA PROCESSING
 # ======================
-# Main channels data
-df_channels = pd.read_csv(input_files["channels"]).drop_duplicates().reset_index(drop=True)
-
-# Additional feature datasets
+df_text = pd.read_csv(input_files["text"])
 df_vis = pd.read_csv(input_files["visual_complexity"])
 df_object_concreteness = pd.read_csv(input_files["object_concreteness"])
 df_face_emotion = pd.read_csv(input_files["face_emotion"])
@@ -73,10 +104,15 @@ df_object_concreteness['object_count_yolo'] = df_object_concreteness['object_cou
 
 # Text processing
 analyzer = SentimentIntensityAnalyzer()
-df_channels['easyocr_text_list'] = df_channels['easyocr_text_list'].apply(safe_join)
-df_channels['text_sentiment_score'] = df_channels['easyocr_text_list'].apply(
+df_text['easyocr_text_list'] = df_text['easyocr_text'].apply(safe_join)
+df_text['text_sentiment_score'] = df_text['easyocr_text_list'].apply(
     lambda x: analyzer.polarity_scores(x)['compound'] if x else 0.0
 )
+df_text['text_presence'] = df_text['easyocr_text_list'].apply(lambda x: 1 if x else 0)
+df_text['num_text'] = df_text['easyocr_text_list'].apply(len)
+
+# Face present
+df_face_emotion['face_present'] = df_face_emotion['face_count'].apply(lambda x: 1 if x > 0 else 0)
 
 # Process merged data
 df_merged = pd.read_csv(input_files["merged"]).drop('description', axis=1)
@@ -95,7 +131,6 @@ df_merged['duration'] = df_merged['duration'].apply(iso8601_duration_to_seconds)
 # ======================
 # FEATURE MERGING
 # ======================
-# Set index for feature datasets
 feature_dfs = [
     df_vis.set_index('image_path'),
     df_face_emotion.set_index('image_path'),
@@ -104,14 +139,12 @@ feature_dfs = [
     df_object_concreteness.set_index('image_path')
 ]
 
-# Concatenate features
 final_features = pd.concat(feature_dfs, axis=1)
 final_features = final_features.loc[:, ~final_features.columns.duplicated()].reset_index()
 final_features['video_id'] = final_features['image_path'].apply(
     lambda x: x.split('\\')[-1].split('.')[0] if pd.notnull(x) else None
 )
 
-# Merge all datasets
 merged_df = pd.merge(
     df_merged,
     final_features,
@@ -122,7 +155,6 @@ merged_df = pd.merge(
 # ======================
 # COLUMN FILTERING
 # ======================
-# Columns to retain in final dataset
 COLUMNS_TO_KEEP = [
     'video_id', 'title', 'tags', 'published_at', 'duration', 'view_count',
     'like_count', 'comment_count', 'thumbnail_url', 'channel_name',
@@ -138,22 +170,15 @@ COLUMNS_TO_KEEP = [
     'title_sentiment_score', 'text_sentiment_score'
 ]
 
-# Filter columns: only keep those that exist in the DataFrame
 existing_columns = [col for col in COLUMNS_TO_KEEP if col in merged_df.columns]
 filtered_df = merged_df[existing_columns]
 
 # ======================
 # FINAL OUTPUT
 # ======================
-# Save intermediate merged data
 merged_df.to_csv(INTERMEDIATE_OUTPUT, index=False)
 print(f"Intermediate merged data saved to: {INTERMEDIATE_OUTPUT}")
 
-# Save filtered dataset
-filtered_df.to_csv(FILTERED_OUTPUT, index=False)
-
-# Verification
-print(f"Filtered dataset saved to: {FILTERED_OUTPUT}")
 print(f"Original dimensions: {merged_df.shape} → Filtered dimensions: {filtered_df.shape}")
 print(f"Columns retained: {len(existing_columns)}/{len(COLUMNS_TO_KEEP)}")
 if len(existing_columns) < len(COLUMNS_TO_KEEP):
