@@ -83,7 +83,7 @@ The statistical modeling and causal inference are performed in four R scripts:
 - **Matching-Algorithms.R**  
 Propensity score matching and balance diagnostics.
 - **PPML-NBR.R**  
-Main panel regressions (PPML and Negative Binomial with fixed effects).
+Main regressions (Pseudo Poissonn Maximum Likelihood and Negative Binomial with fixed effects).
 - **PPML-NBR-No-Fixed-Effects.R**  
 Regressions without fixed effects.
 - **PPML-NBR-Interaction.R**  
