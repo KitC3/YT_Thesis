@@ -7,12 +7,12 @@ library(cobalt)
 library(gridExtra)
 
 # Set output directory
-output_dir <- "C:/Users/ChanK/OneDrive - Tilburg University/Thesis 2024/Thesis - R Scripts/Output - Matching Algorithms"
+output_dir <- "<YOUR_OUTPUT_DIRECTORY_HERE>"  # e.g., "C:/path/to/output/directory"
 if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
 
 # 1. Load and Prepare Data
 # -------------------------
-file_path <- "C:/Users/ChanK/OneDrive - Tilburg University/Thesis 2024/Youtube Data/Final 2025 June/20250624merged_final_df_v2.csv"
+file_path <- "<YOUR_CSV_FILE_PATH_HERE>"      # e.g., "C:/path/to/your/file.csv"
 df <- read.csv(file_path) %>%
   mutate(
     face_presence = as.integer(face_present),
